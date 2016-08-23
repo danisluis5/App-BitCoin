@@ -75,23 +75,26 @@
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="cbBank" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cbCaptcha" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cbTime" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="spSatoshi" pref="101" max="32767" attributes="0"/>
+                                      <EmptySpace min="187" pref="187" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="cbMoney" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
                               <Component id="tfWebsite" min="-2" pref="213" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="chkRef" min="-2" pref="50" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="chkRef" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="cbBank" alignment="0" max="32767" attributes="0"/>
-                          <Component id="cbCaptcha" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="cbTime" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="spSatoshi" pref="120" max="32767" attributes="0"/>
-                              <EmptySpace min="187" pref="187" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="cbMoney" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
                   <Component id="Button" alignment="1" max="32767" attributes="0"/>
                   <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
@@ -303,7 +306,7 @@
                     <Property name="columns" type="int" value="20"/>
                     <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="5"/>
-                    <Property name="toolTipText" type="java.lang.String" value="V&#xed; d&#x1ee5;: &#xa;&lt;tr style=&quot;border-bottom: 5px solid white;&quot;&gt;&#xa;&#x9;&lt;td style=&quot;background-color: #1c417f; color: white;&quot;&gt;BTC&lt;/td&gt;&#xa;&#x9;&lt;td style=&quot;color: red;&quot;&gt;&lt;a &#x9;href=&quot;http://www.siizo.com/?r=1Ash9Y2YGadx3FH2tQiYYiAskHcZ6jDSer&quot; &#x9;&#x9;target=&quot;_blank&quot;&gt;SIIZO&lt;/a&gt;&lt;/td&gt;&#xa;&#x9;&lt;td style=&quot;background-color: #87ceeb; color: white;&quot;&gt;60&lt;/td&gt;&#xa;&#x9;&lt;td style=&quot;background-color: #ff6a00; color: white;&quot;&gt;3&lt;/td&gt;&#xa;&#x9;&lt;td&gt;SM&lt;/td&gt;&#xa;&#x9;&lt;td style=&quot;background-color: #35d13c; color: white;&quot;&gt;FaucetBOX&lt;/td&gt;&#xa;&lt;/tr&gt;"/>
+                    <Property name="toolTipText" type="java.lang.String" value=""/>
                     <Property name="wrapStyleWord" type="boolean" value="true"/>
                   </Properties>
                 </Component>
@@ -374,6 +377,9 @@
                     <Property name="horizontalTextPosition" type="int" value="0"/>
                     <Property name="verticalTextPosition" type="int" value="3"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSuaActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnNhapLai">
                   <Properties>
@@ -388,6 +394,9 @@
                     <Property name="horizontalTextPosition" type="int" value="0"/>
                     <Property name="verticalTextPosition" type="int" value="3"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNhapLaiActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnXoa">
                   <Properties>
@@ -402,6 +411,9 @@
                     <Property name="horizontalTextPosition" type="int" value="0"/>
                     <Property name="verticalTextPosition" type="int" value="3"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -441,12 +453,12 @@
             <Component class="javax.swing.JCheckBox" name="chkRef">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="1"/>
+                  <Font name="Tahoma" size="11" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Ref"/>
+                <Property name="text" type="java.lang.String" value="No Ref"/>
                 <Property name="opaque" type="boolean" value="false"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[81, 28]"/>
@@ -497,6 +509,7 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="tbMain">
                   <Properties>
+                    <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="4">
                         <Column editable="true" title="Title 1" type="java.lang.Object"/>
@@ -506,6 +519,10 @@
                       </Table>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbMainMousePressed"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tbMainKeyReleased"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

@@ -18,6 +18,9 @@ public class Bitcoin {
     private String typeofCaptcha;
     private String withDrawMoney;
 
+    public Bitcoin(){    
+    }
+    
     public Bitcoin(int id, String typeofMoney, String url, String satoshi, String time, String typeofCaptcha, String withDrawMoney) {
         this.id = id;
         this.typeofMoney = typeofMoney;

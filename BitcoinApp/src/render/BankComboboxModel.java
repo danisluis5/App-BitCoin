@@ -23,6 +23,20 @@ public class BankComboboxModel implements ComboBoxModel{
         alItems.add("ePay");
         object = alItems.get(0);
     }
+    public BankComboboxModel(String temp){
+        alItems.add("FaucetBOX");
+        alItems.add("ePay");
+        switch(temp){
+            case "FaucetBOX":
+                object = alItems.get(0);
+                break;
+            case "ePay":
+                object = alItems.get(1);
+                break;
+            default:
+               object = alItems.get(0);
+        }
+    }
     @Override
     public void setSelectedItem(Object anItem) {
         object = anItem;

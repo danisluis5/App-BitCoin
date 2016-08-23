@@ -23,6 +23,21 @@ public class CaptchaComboboxModel implements ComboBoxModel{
         alItems.add("RC");
         object = alItems.get(0);
     }
+    public CaptchaComboboxModel(String temp){
+        alItems.add("SM");
+        alItems.add("RC");
+        switch(temp){
+            case "SM":
+                object = alItems.get(0);
+                break;
+            case "RC":
+                object = alItems.get(1);
+                break;
+            default:
+               object = alItems.get(0);
+        }
+    }
+    
     @Override
     public void setSelectedItem(Object anItem) {
         object = anItem;

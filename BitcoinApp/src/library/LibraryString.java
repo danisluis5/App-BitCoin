@@ -37,15 +37,19 @@ public class LibraryString {
                 }
                 result = outString.substring(7,endIndex).toUpperCase();
             }
-        }else{
+        }else if(outString.substring(0, 5).equals("https")){
             int index = 0;
             for(char c : outString.toCharArray()){
                 if(c=='.'){
-                    endIndex = index;
+                    if(beginIndex == 0){
+                        beginIndex = index+1;
+                    }else{
+                        endIndex = index;
+                    }
                 }
                 index++;
             }
-           result = outString.substring(8,endIndex).toUpperCase();
+           result = outString.substring(beginIndex,endIndex).toUpperCase();
         }
         return result;
     }

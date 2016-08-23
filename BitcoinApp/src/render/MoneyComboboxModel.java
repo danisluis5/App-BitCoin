@@ -17,11 +17,30 @@ public class MoneyComboboxModel implements ComboBoxModel{
 
     private ArrayList<String> alItems = new ArrayList<>();
     private Object object = new Object();
+    
     public MoneyComboboxModel(){
         alItems.add("BTC");
         alItems.add("Doge");
         alItems.add("LTC");
-        object = alItems.get(0);
+        object = alItems.get(0); 
+    }
+    public MoneyComboboxModel(String temp){
+        alItems.add("BTC");
+        alItems.add("Doge");
+        alItems.add("LTC");
+        switch(temp){
+            case "BTC":
+                object = alItems.get(0);
+                break;
+            case "Doge":
+                object = alItems.get(1);
+                break;
+            case "LTC":
+                object = alItems.get(2);
+                break;
+            default:
+               object = alItems.get(0);
+        }
     }
     @Override
     public void setSelectedItem(Object anItem) {
