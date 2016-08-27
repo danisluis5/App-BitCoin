@@ -39,17 +39,16 @@ public class LibraryString {
             }
         }else if(outString.substring(0, 5).equals("https")){
             int index = 0;
+            endIndex = 0;
             for(char c : outString.toCharArray()){
                 if(c=='.'){
                     if(beginIndex == 0){
-                        beginIndex = index+1;
-                    }else{
                         endIndex = index;
                     }
                 }
                 index++;
             }
-           result = outString.substring(beginIndex,endIndex).toUpperCase();
+           result = outString.substring(8,endIndex).toUpperCase();
         }
         return result;
     }

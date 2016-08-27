@@ -17,11 +17,12 @@ public class Bitcoin {
     private String time;
     private String typeofCaptcha;
     private String withDrawMoney;
+    private boolean status;
 
     public Bitcoin(){    
     }
     
-    public Bitcoin(int id, String typeofMoney, String url, String satoshi, String time, String typeofCaptcha, String withDrawMoney) {
+    public Bitcoin(int id, String typeofMoney, String url, String satoshi, String time, String typeofCaptcha, String withDrawMoney,boolean status) {
         this.id = id;
         this.typeofMoney = typeofMoney;
         this.url = url;
@@ -29,8 +30,17 @@ public class Bitcoin {
         this.time = time;
         this.typeofCaptcha = typeofCaptcha;
         this.withDrawMoney = withDrawMoney;
+        this.status = status;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
     public int getId() {
         return id;
     }

@@ -7,9 +7,13 @@ package view;
 
 import bean.Bitcoin;
 import controller.ControllerBitCoin;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableRowSorter;
 import library.LibraryString;
 import model.ModelBitCoin;
 import render.BankComboboxModel;
@@ -37,7 +41,9 @@ public class NewApp extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
         this.setTitle("Một phần của phần mềm bitcoinApp - Version1");
         this.cbMoney.setModel(new MoneyComboboxModel()); // Fix Import => no see error 
+        this.cbMoneyF.setModel(new MoneyComboboxModel()); // Fix Import => no see error 
         this.cbTime.setModel(new TimeComboboxModel());
+        this.cbTimeF.setModel(new TimeComboboxModel());
         this.cbCaptcha.setModel(new CaptchaComboboxModel());
         this.cbBank.setModel(new BankComboboxModel());
         controller = new ControllerBitCoin(tbMain);
@@ -78,12 +84,28 @@ public class NewApp extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         chkRef = new javax.swing.JCheckBox();
+        chkStatus = new javax.swing.JCheckBox();
         RightPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbMain = new javax.swing.JTable();
+        pnSearch = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        tfWebsiteF = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        tfSatoshiF = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        cbTimeF = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        cbMoneyF = new javax.swing.JComboBox<>();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jPanel4 = new javax.swing.JPanel();
+        btnSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("frame"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1050, 495));
 
         jSplitPane1.setOneTouchExpandable(true);
 
@@ -100,6 +122,7 @@ public class NewApp extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Website:");
 
+        tfWebsite.setForeground(new java.awt.Color(255, 0, 0));
         tfWebsite.setToolTipText("Ví dụ: www.google.com.vn");
         tfWebsite.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.lightGray, java.awt.Color.lightGray, null, null));
         tfWebsite.setPreferredSize(new java.awt.Dimension(59, 25));
@@ -219,6 +242,12 @@ public class NewApp extends javax.swing.JFrame {
         chkRef.setOpaque(false);
         chkRef.setPreferredSize(new java.awt.Dimension(81, 28));
 
+        chkStatus.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        chkStatus.setForeground(new java.awt.Color(255, 255, 255));
+        chkStatus.setText("Ok");
+        chkStatus.setOpaque(false);
+        chkStatus.setPreferredSize(new java.awt.Dimension(81, 28));
+
         javax.swing.GroupLayout LeftPanelLayout = new javax.swing.GroupLayout(LeftPanel);
         LeftPanel.setLayout(LeftPanelLayout);
         LeftPanelLayout.setHorizontalGroup(
@@ -241,15 +270,17 @@ public class NewApp extends javax.swing.JFrame {
                             .addComponent(cbCaptcha, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1)
                             .addComponent(cbTime, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(LeftPanelLayout.createSequentialGroup()
-                                .addComponent(spSatoshi, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                                .addGap(187, 187, 187))
                             .addComponent(cbMoney, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(10, 10, 10))
                     .addGroup(LeftPanelLayout.createSequentialGroup()
                         .addComponent(tfWebsite, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(chkRef, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(chkRef, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(LeftPanelLayout.createSequentialGroup()
+                        .addComponent(spSatoshi, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(chkStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(96, 96, 96))))
             .addComponent(Button, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -270,7 +301,8 @@ public class NewApp extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addGroup(LeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(spSatoshi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spSatoshi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chkStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addGroup(LeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -300,6 +332,8 @@ public class NewApp extends javax.swing.JFrame {
         RightPanel.setPreferredSize(new java.awt.Dimension(396, 450));
         RightPanel.setLayout(new java.awt.BorderLayout());
 
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(452, 300));
+
         tbMain.setAutoCreateRowSorter(true);
         tbMain.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -325,6 +359,76 @@ public class NewApp extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tbMain);
 
         RightPanel.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+
+        pnSearch.setBackground(new java.awt.Color(255, 255, 255));
+        pnSearch.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm kiếm thông tin", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Times New Roman", 2, 13))); // NOI18N
+        pnSearch.setLayout(new java.awt.GridLayout(3, 0));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setPreferredSize(new java.awt.Dimension(516, 30));
+        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 2));
+
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel9.setText("Nhập tên website:");
+        jPanel2.add(jLabel9);
+
+        tfWebsiteF.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.lightGray, java.awt.Color.lightGray, null, null));
+        tfWebsiteF.setPreferredSize(new java.awt.Dimension(150, 24));
+        jPanel2.add(tfWebsiteF);
+
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 51, 0));
+        jLabel10.setText("Số Satoshi");
+        jPanel2.add(jLabel10);
+
+        tfSatoshiF.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.lightGray, java.awt.Color.lightGray, null, null));
+        tfSatoshiF.setPreferredSize(new java.awt.Dimension(100, 24));
+        jPanel2.add(tfSatoshiF);
+
+        pnSearch.add(jPanel2);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel11.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 153, 51));
+        jLabel11.setText("Chọn mốc thời gian:");
+        jPanel3.add(jLabel11);
+
+        cbTimeF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Chọn mốc thời gian --" }));
+        cbTimeF.setMinimumSize(new java.awt.Dimension(56, 24));
+        jPanel3.add(cbTimeF);
+
+        jLabel12.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 102, 102));
+        jLabel12.setText("Chọn loại tiền:");
+        jPanel3.add(jLabel12);
+
+        cbMoneyF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Chọn loại tiền --" }));
+        cbMoneyF.setMinimumSize(new java.awt.Dimension(56, 24));
+        jPanel3.add(cbMoneyF);
+
+        jCheckBox1.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        jCheckBox1.setForeground(new java.awt.Color(0, 102, 102));
+        jCheckBox1.setText("Paying");
+        jPanel3.add(jCheckBox1);
+
+        pnSearch.add(jPanel3);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search-icon.png"))); // NOI18N
+        btnSearch.setText("Tìm kiếm");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnSearch);
+
+        pnSearch.add(jPanel4);
+
+        RightPanel.add(pnSearch, java.awt.BorderLayout.PAGE_END);
 
         jSplitPane1.setRightComponent(RightPanel);
 
@@ -352,17 +456,18 @@ public class NewApp extends javax.swing.JFrame {
         String typeofCaptcha = (String) new CaptchaComboboxModel().getElementAt(cbCaptcha.getSelectedIndex());
         String withDrawModeny = (String) new BankComboboxModel().getElementAt(cbBank.getSelectedIndex());
         String outString = ""
-        +"<tr style=\"border-bottom: 5px solid white;\">"
-        +   "<td style=\"background-color: #1c417f; color: white;\">"+typeofMoney+"</td>"
-        +    "<td style=\"color: red;\"><a href=\""+url+"\" target=\"_blank\">"+nameurl+"</a></td>"
-        +    "<td style=\"background-color: #87ceeb; color: white;\">"+satoshi+"</td>"
-        +    "<td style=\"background-color: #ff6a00; color: white;\">"+time+"</td>"
-        +    "<td>"+typeofCaptcha+"</td>"
-        +    "<td style=\"background-color: #35d13c; color: white;\">"+withDrawModeny+"</td>"
-        +"</tr>";
+        +"<tr>"+"\n"
+        +    "<td style=\"text-align:center;background-color:#1c417f;color:white;\">"+typeofMoney+"</td>"+"\n"
+        +    "<td style=\"text-align:center;color:red;\"><a style=\"text-decoration:none;\" href=\""+url+"\" target=\"_blank\">"+nameurl+"</a></td>"+"\n"
+        +    "<td style=\"text-align:center;background-color:#87ceeb;color:white;\">"+satoshi+"</td>"+"\n"
+        +    "<td style=\"text-align:center;background-color:#ffbaa0;color:white;\">"+time+"</td>"+"\n"
+        +    "<td style=\"text-align:center;background-color:#fd7488;color:white;\">"+typeofCaptcha+"</td>"+"\n"
+        +    "<td style=\"text-align:center;background-color:#35d13c;color:white;\">"+withDrawModeny+"</td>"+"\n"
+        +"</tr>"+"\n"
+        + "<tr style=\"height:1px;\"><td></td></tr>"+"\n";
         tAHTML.append(outString+"\n");
         /** Add data from filling out the form into data **/
-        Bitcoin bitcoin = new Bitcoin(0, typeofMoney, url, satoshi, time, typeofCaptcha, withDrawModeny);
+        Bitcoin bitcoin = new Bitcoin(0, typeofMoney, url, satoshi, time, typeofCaptcha, withDrawModeny,false);
         if(controller.addItem(bitcoin)>0){
             JOptionPane.showConfirmDialog(new NewApp(),"Thêm mới thành công","Thông báo",JOptionPane.WARNING_MESSAGE);
             this.resetForm();
@@ -387,7 +492,7 @@ public class NewApp extends javax.swing.JFrame {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
         int row = tbMain.getSelectedRow();
-        if(row > 0){
+        if(row >= 0){
             int id = (Integer)controller.getValueAt(row, 0);
             if(controller.deleteItem(id,row) > 0){
                 JOptionPane.showConfirmDialog(new NewApp(), "Xóa thành công","Thông báo",JOptionPane.WARNING_MESSAGE);
@@ -402,7 +507,7 @@ public class NewApp extends javax.swing.JFrame {
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
         int row = tbMain.getSelectedRow();
-        if(row > 0){
+        if(row >= 0){
             int id = (Integer)controller.getValueAt(row, 0);
             String typeofMoney = (String) new MoneyComboboxModel().getElementAt(cbMoney.getSelectedIndex());
             String url = new ModelBitCoin().getItem(id).getUrl();
@@ -410,8 +515,9 @@ public class NewApp extends javax.swing.JFrame {
             String time = (String)new TimeComboboxModel().getElementAt(cbTime.getSelectedIndex());
             String typeofCaptcha = (String)new CaptchaComboboxModel().getElementAt(cbCaptcha.getSelectedIndex());
             String withDrawMoney = (String)new BankComboboxModel().getElementAt(cbBank.getSelectedIndex());
+            Boolean status = chkStatus.isSelected();
             // writting to ease to fix not hard
-            Bitcoin bitcoin = new Bitcoin(id, typeofMoney, url, satoshi, time, typeofCaptcha, withDrawMoney);
+            Bitcoin bitcoin = new Bitcoin(id, typeofMoney, url, satoshi, time, typeofCaptcha, withDrawMoney,status);
             if(controller.editItem(bitcoin,row) > 0){
                 JOptionPane.showConfirmDialog(new NewApp(), "Cập nhật thành công","Thông báo",JOptionPane.WARNING_MESSAGE);
             }else{
@@ -421,6 +527,26 @@ public class NewApp extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(new NewApp(), "Vui lòng chọn dòng để cập nhật","Thông báo",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        TableRowSorter sorter = new TableRowSorter(tbMain.getModel());
+        tbMain.setRowSorter(sorter);
+        
+        ArrayList<RowFilter<AbstractTableModel,Object>> alFilter = new ArrayList<>();
+        
+        String uWebsite = tfWebsiteF.getText();
+        RowFilter<AbstractTableModel,Object> filterWebsite = RowFilter.regexFilter(uWebsite, 0);
+        
+        String uSatoshi = tfSatoshiF.getText();
+        RowFilter<AbstractTableModel,Object> filterSatoshi = RowFilter.regexFilter(uSatoshi, 1);
+        
+        alFilter.add(filterWebsite);
+        alFilter.add(filterSatoshi);
+        
+        RowFilter<AbstractTableModel,Object> filterAnd = RowFilter.andFilter(alFilter);
+        sorter.setRowFilter(filterAnd);
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -450,10 +576,8 @@ public class NewApp extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NewApp().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new NewApp().setVisible(true);
         });
     }
 
@@ -462,15 +586,23 @@ public class NewApp extends javax.swing.JFrame {
     private javax.swing.JPanel LeftPanel;
     private javax.swing.JPanel RightPanel;
     private javax.swing.JButton btnNhapLai;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox cbBank;
     private javax.swing.JComboBox cbCaptcha;
     private javax.swing.JComboBox cbMoney;
+    private javax.swing.JComboBox<String> cbMoneyF;
     private javax.swing.JComboBox cbTime;
+    private javax.swing.JComboBox<String> cbTimeF;
     private javax.swing.JCheckBox chkRef;
+    private javax.swing.JCheckBox chkStatus;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -478,26 +610,45 @@ public class NewApp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JPanel pnSearch;
     private javax.swing.JSpinner spSatoshi;
     private javax.swing.JTextArea tAHTML;
     private javax.swing.JTable tbMain;
+    private javax.swing.JTextField tfSatoshiF;
     private javax.swing.JTextField tfWebsite;
+    private javax.swing.JTextField tfWebsiteF;
     // End of variables declaration//GEN-END:variables
 
     private void setForm() {
         int row = tbMain.getSelectedRow();
-        int id = (Integer)controller.getValueAt(row, 0);
+        int id = Integer.parseInt(tbMain.getValueAt(row, 0).toString());
         Bitcoin object = new ModelBitCoin().getItem(id);
-        cbMoney.setModel(new MoneyComboboxModel(object.getTypeofMoney()));
-        tfWebsite.setText(object.getUrl());
-        spSatoshi.setValue(Integer.parseInt(object.getSatoshi()));
-        cbTime.setModel(new TimeComboboxModel(object.getTime()));
-        cbCaptcha.setModel(new CaptchaComboboxModel(object.getTypeofCaptcha())); // writting hard => it 's difficult to fix
-        cbBank.setModel(new BankComboboxModel(object.getWithDrawMoney()));
+        cbMoney.setModel(new MoneyComboboxModel((String) tbMain.getValueAt(row, 1)));
+        tfWebsite.setText((String) tbMain.getValueAt(row, 2));
+        tfWebsite.setToolTipText(object.getUrl());
+        spSatoshi.setValue(Integer.parseInt((String) tbMain.getValueAt(row, 3)));
+        cbTime.setModel(new TimeComboboxModel(String.valueOf(tbMain.getValueAt(row, 4))));
+        cbCaptcha.setModel(new CaptchaComboboxModel((String) tbMain.getValueAt(row, 5))); // writting hard => it 's difficult to fix
+        cbBank.setModel(new BankComboboxModel((String) tbMain.getValueAt(row, 6)));
+        String outString = ""
+        +"<tr>"+"\n"
+        +    "<td style=\"text-align:center;background-color:#1c417f;color:white;\">"+tbMain.getValueAt(row, 1)+"</td>"+"\n"
+        +    "<td style=\"text-align:center;color:red;\"><a style=\"text-decoration:none;\" href=\""+object.getUrl()+"\" target=\"_blank\">"+tbMain.getValueAt(row, 2)+"</a></td>"+"\n"
+        +    "<td style=\"text-align:center;background-color:#87ceeb;color:white;\">"+tbMain.getValueAt(row, 3)+"</td>"+"\n"
+        +    "<td style=\"text-align:center;background-color:#ffbaa0;color:white;\">"+tbMain.getValueAt(row, 4)+"</td>"+"\n"
+        +    "<td style=\"text-align:center;background-color:#fd7488;color:white;\">"+tbMain.getValueAt(row, 5)+"</td>"+"\n"
+        +    "<td style=\"text-align:center;background-color:#35d13c;color:white;\">"+tbMain.getValueAt(row, 6)+"</td>"+"\n"
+        +"</tr>"+"\n"
+        + "<tr style=\"height:1px;\"><td></td></tr>"+"\n";
+        tAHTML.setText(outString);
     }
     private void resetForm(){
         cbMoney.setModel(new MoneyComboboxModel());

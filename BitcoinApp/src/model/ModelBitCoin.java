@@ -39,7 +39,7 @@ public class ModelBitCoin {
             st = conn.createStatement();
             rs = st.executeQuery(("SELECT * FROM "+table));
             while(rs.next()){
-                alItems.add(new Bitcoin(rs.getInt("id"), rs.getString("typemoney"), rs.getString("url"), rs.getString("satoshi"), rs.getString("time"), rs.getString("captcha"), rs.getString("drawmoney")));
+                alItems.add(new Bitcoin(rs.getInt("id"), rs.getString("typemoney"), rs.getString("url"), rs.getString("satoshi"), rs.getString("time"), rs.getString("captcha"), rs.getString("drawmoney"),rs.getBoolean("status")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ModelBitCoin.class.getName()).log(Level.SEVERE, null, ex);
@@ -55,7 +55,7 @@ public class ModelBitCoin {
             pst.setInt(1, id);
             rs = pst.executeQuery();
             if(rs.next()){
-                item = new Bitcoin(rs.getInt("id"), rs.getString("typemoney"), rs.getString("url"), rs.getString("satoshi"), rs.getString("time"), rs.getString("captcha"), rs.getString("drawmoney"));
+                item = new Bitcoin(rs.getInt("id"), rs.getString("typemoney"), rs.getString("url"), rs.getString("satoshi"), rs.getString("time"), rs.getString("captcha"), rs.getString("drawmoney"),rs.getBoolean("status"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ModelBitCoin.class.getName()).log(Level.SEVERE, null, ex);
@@ -66,7 +66,7 @@ public class ModelBitCoin {
     public int addItem(Bitcoin bitcoin) {
         int id = 0;
         conn = lbdb.getConnectMySQL();
-        String sql = "INSERT INTO "+table+"(typemoney,url,satoshi,time,captcha,drawmoney) VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO "+table+"(typemoney,url,satoshi,time,captcha,drawmoney,status) VALUES(?,?,?,?,?,?,?)";
         try {
             pst = conn.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
             pst.setString(1, bitcoin.getTypeofMoney());
@@ -75,6 +75,7 @@ public class ModelBitCoin {
             pst.setString(4, bitcoin.getTime());
             pst.setString(5, bitcoin.getTypeofCaptcha());
             pst.setString(6, bitcoin.getWithDrawMoney());
+            pst.setBoolean(7, bitcoin.isStatus());
             id = pst.executeUpdate();
             rs = pst.getGeneratedKeys();
             if(rs.next()){
@@ -102,7 +103,7 @@ public class ModelBitCoin {
     public int editItem(Bitcoin bitcoin) {
         int result = 0;
         conn = lbdb.getConnectMySQL();
-        String sql = "UPDATE "+table+" SET typemoney = ?,url = ?,satoshi = ?,time = ?,captcha = ?,drawmoney = ? WHERE id = ?";
+        String sql = "UPDATE "+table+" SET typemoney = ?,url = ?,satoshi = ?,time = ?,captcha = ?,drawmoney = ?,status = ? WHERE id = ?";
         try {
             pst = conn.prepareStatement(sql);
             pst.setString(1, bitcoin.getTypeofMoney());
@@ -111,7 +112,8 @@ public class ModelBitCoin {
             pst.setString(4, bitcoin.getTime());
             pst.setString(5, bitcoin.getTypeofCaptcha());
             pst.setString(6, bitcoin.getWithDrawMoney());
-            pst.setInt(7, bitcoin.getId());
+            pst.setBoolean(7, bitcoin.isStatus());
+            pst.setInt(8, bitcoin.getId());
             result = pst.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ModelBitCoin.class.getName()).log(Level.SEVERE, null, ex);
